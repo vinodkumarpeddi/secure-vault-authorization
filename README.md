@@ -1,21 +1,21 @@
 🔐 Secure Vault System
-On-Chain Authorization with Replay Protection
+On-Chain Authorization with Deterministic Replay Protection
 
-A production-grade Web3 vault architecture that enforces deterministic, single-use withdrawals through strict on-chain authorization.
+A production-grade Web3 vault architecture that enforces single-use, cryptographically authorized withdrawals with strict on-chain replay protection.
 
 📌 Overview
 
-The Secure Vault System is a defensive, multi-contract blockchain architecture designed to safely manage and withdraw native blockchain funds.
+Secure Vault System is a defensive multi-contract blockchain architecture designed to safely manage and withdraw native blockchain funds (ETH).
 
-It mirrors real-world DeFi protocol design, where:
+Inspired by real-world DeFi protocol designs, it strictly separates:
 
 🏦 Asset custody
 
 🔐 Permission validation
 
-are intentionally separated to reduce risk, limit trust boundaries, and improve auditability.
+This separation reduces risk, limits trust boundaries, and significantly improves auditability.
 
-💡 Core principle:
+💡 Core Principle
 Funds move only when explicitly authorized — exactly once — under all execution conditions.
 
 🎯 Design Objectives
@@ -38,7 +38,7 @@ This system guarantees:
 
 🧠 High-Level Architecture
 
-The system consists of two independent on-chain contracts, each with a clearly scoped responsibility.
+The system consists of two independent on-chain contracts, each with a clearly defined responsibility.
 
 🏦 SecureVault Contract
 
@@ -108,17 +108,17 @@ Each contract remains small, focused, and auditable
 
 Security reviews can be isolated and scoped
 
-✅ This mirrors battle-tested DeFi protocol patterns.
+✅ Mirrors battle-tested DeFi protocol patterns
 
 🔁 End-to-End Withdrawal Flow
 
-A user deposits ETH into SecureVault
+User deposits ETH into SecureVault
 
-A trusted off-chain authority constructs a withdrawal authorization
+Trusted off-chain authority constructs a withdrawal authorization
 
-The authorization is cryptographically signed
+Authorization is cryptographically signed
 
-A withdrawal request is sent to SecureVault
+Withdrawal request is sent to SecureVault
 
 SecureVault forwards data to AuthorizationManager
 
@@ -180,14 +180,13 @@ keccak256(
   nonce
 )
 
-
-This ID:
+Why this matters:
 
 Prevents ambiguity
 
 Enables simple replay tracking
 
-Guarantees uniqueness across vaults and networks
+Guarantees uniqueness across vaults & networks
 
 🔁 Replay Protection (On-Chain)
 
@@ -242,7 +241,7 @@ Deposit	ETH received by the vault
 AuthorizationUsed	Authorization consumed
 Withdrawal	ETH transferred to recipient
 
-Failed operations revert cleanly and emit no misleading events.
+❗ Failed operations revert cleanly and emit no misleading events.
 
 🧪 Testing Strategy
 
@@ -264,7 +263,7 @@ Adversarial replay attempts
 
 Parameter manipulation attacks
 
-✅ System invariants hold under malicious conditions.
+✅ System invariants hold under malicious conditions
 
 🐳 Local Deployment (Docker)
 
